@@ -26,8 +26,8 @@ local AWS = class.AWS {
 	    self.Kinesis = require('lua-aws.services.kinesis').new(self)
 	    self.S3 = require('lua-aws.services.s3').new(self)
 	    self.SNS = require('lua-aws.services.sns').new(self)
-			self.SWF = require('lua-aws.services.swf').new(self)
-			self.SQS = require('lua-aws.services.sqs').new(self)
+	    self.SQS = require('lua-aws.services.sqs').new(self)
+	    self.SWF = require('lua-aws.services.swf').new(self)
 	    self.CloudWatch = require('lua-aws.services.cloudwatch').new(self, "monitoring")
 	    self.CloudWatchLog = require('lua-aws.services.cloudwatchlog').new(self, "log")
 
