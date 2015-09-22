@@ -24,8 +24,10 @@ local AWS = class.AWS {
 		self.DynamoDB = require('lua-aws.services.dynamodb').new(self)
 		self.EC2 = require('lua-aws.services.ec2').new(self)
 	    self.Kinesis = require('lua-aws.services.kinesis').new(self)
+	    self.S3 = require('lua-aws.services.s3').new(self)
 	    self.SNS = require('lua-aws.services.sns').new(self)
-	    self.SQS = require('lua-aws.services.sqs').new(self)
+			self.SWF = require('lua-aws.services.swf').new(self)
+			self.SQS = require('lua-aws.services.sqs').new(self)
 	    self.CloudWatch = require('lua-aws.services.cloudwatch').new(self, "monitoring")
 	    self.CloudWatchLog = require('lua-aws.services.cloudwatchlog').new(self, "log")
 
@@ -58,7 +60,7 @@ local AWS = class.AWS {
 		require('./services/storagegateway')
 		require('./services/sts')
 		require('./services/support')
-		]]--	
+		]]--
 	end,
 	verify_and_fill_config = function (self, config)
 		if config.sslEnabled == nil then
@@ -69,7 +71,7 @@ local AWS = class.AWS {
 		return config
 	end,
 	init_engines = function (self, preferred)
-		local ok, r 
+		local ok, r
 		local selected_engines = {}
 		for k,v in pairs(available_engines) do
 			if preferred[k] then
@@ -89,7 +91,7 @@ local AWS = class.AWS {
 						selected_engines[k] = self:try_load_engines(k, v[i])
 						if selected_engines[k] then
 							break
-						end	
+						end
 					end
 				end
 			end
